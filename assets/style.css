@@ -17,17 +17,20 @@
     --beige-light: #f5e1c2;
     --start-background: linear-gradient(90deg, #efdec6 0%, #fff5e6 50%, #F5E1C2 100%);
     --primary: linear-gradient(90deg, #F5E1C2 0%, #F5E1C2 50%, #F5E1C2 100%);
-    --secundary: linear-gradient(90deg, #F5E1C2 0%, #F5E1C2 50%, #363846 100%);
-    --terciary: linear-gradient(90deg, #363846 0%, #363846 50%, #363846 100%);
-    --quaternary: linear-gradient(90deg, #363846 0%, #F5E1C2 50%, #F5E1C2 100%);
+    --secundary: linear-gradient(90deg, #F5E1C2 0%, #F5E1C2 50%, #48495a 100%);
+    --terciary: linear-gradient(90deg, #48495a 0%, #48495a 50%, #48495a 100%);
+    --quaternary: linear-gradient(90deg, #48495a 0%, #F5E1C2 50%, #F5E1C2 100%);
 }
 
 body {
     font-family: 'Courier New', monospace;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
     width: 0;
+    height: 0;
 }
 
 .horizontal-scroll{
@@ -175,11 +178,10 @@ button:hover {
     top:0;
     height:100vh;
     display:flex;
-    width:400vw;
 }
 
 .panel {
-    min-width: 100vw;
+    flex: 0 0 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
