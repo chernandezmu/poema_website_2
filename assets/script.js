@@ -111,4 +111,4 @@ window.addEventListener("scroll",()=>{
     const progress = scrollY / maxScroll
     const move = progress * maxTranslate
     scrollContainer.style.transform = `translateX(-${move}px)`
-})
+})  

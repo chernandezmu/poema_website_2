@@ -15,6 +15,7 @@
     --beige: #EEC993;
     --beige-dark: #d4b17a;
     --beige-light: #f5e1c2;
+    --start-background: linear-gradient(90deg, #efdec6 0%, #fff5e6 50%, #F5E1C2 100%);
     --primary: linear-gradient(90deg, #F5E1C2 0%, #F5E1C2 50%, #F5E1C2 100%);
     --secundary: linear-gradient(90deg, #F5E1C2 0%, #F5E1C2 50%, #363846 100%);
     --terciary: linear-gradient(90deg, #363846 0%, #363846 50%, #363846 100%);
@@ -22,7 +23,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', monospace;
 }
 
 ::-webkit-scrollbar {
@@ -121,7 +122,7 @@ body {
 
 .start-screen {
     height: 100vh;
-    background: var(--beige-light);
+    background: var(--start-background);
     display: flex;
     flex-direction: column;
     align-items: center;
