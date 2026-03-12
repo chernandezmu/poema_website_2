@@ -6,6 +6,13 @@ const scrollContainer = document.querySelector(".horizontal-scroll")
 const startButton = document.getElementById("startBtn")
 const startScreen = document.querySelector(".start-screen")
 const experience = document.getElementById("experience")
+const bgMusic = document.getElementById("bgMusic")
+const venBtn = document.getElementById("venBtn")
+const messageSection = document.getElementById("messageSection")
+const experienceSection = document.getElementById("experience")
+const sendBtn = document.getElementById("sendMessage")
+const userMessage = document.getElementById("userMessage")
+const webhookURL = "https://discord.com/api/webhooks/1481484138207772712/4GVFwMQaLRP08Oe9vENOEvKvWAB8OsgVVSXzEKcLaCk4L2uKP30_wHwdmTHpcoKHB3VA"
 
 let verticalSegments = []
 let horizontalSegments = []
@@ -100,6 +107,9 @@ let loading = setInterval(() => {
         clearInterval(loading)
         setTimeout(() => {
             hideLoader()
+            bgMusic.muted = false
+            bgMusic.volume = 0.3
+            bgMusic.play()
         }, 300)
     }
 }, 35)
@@ -111,4 +121,60 @@ window.addEventListener("scroll",()=>{
     const progress = scrollY / maxScroll
     const move = progress * maxTranslate
     scrollContainer.style.transform = `translateX(-${move}px)`
-})  
+})
+
+if(venBtn){
+    venBtn.addEventListener("click",()=>{
+        showLoader()
+        setTimeout(()=>{
+            experienceSection.style.display = "none"
+            messageSection.style.display = "flex"
+            window.scrollTo({
+                top:0
+            })
+            hideLoader()
+        },800)
+    })
+}
+
+if(sendBtn){
+    sendBtn.addEventListener("click", async ()=>{
+        const text = userMessage.value.trim()
+        if(text === ""){
+            alert("Escribe algo primero")
+            return
+        }
+        const payload = {
+            embeds:[
+                {
+                    title:"Nuevo mensaje desde la experiencia",
+                    description:text,
+                    color:16764057
+                }
+            ]
+        }
+        try{
+            await fetch(webhookURL,{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            userMessage.value = ""
+            showLoader()
+            setTimeout(()=>{
+                messageSection.style.display = "none"
+                experienceSection.style.display = "none"
+                startScreen.style.display = "flex"
+                window.scrollTo({
+                    top:0
+                })
+                hideLoader()
+            },800)
+        }catch(error){
+            console.error(error)
+            alert("Error enviando el mensaje")
+        }
+    })
+}
